@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create New Item</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            margin-top: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Create New Item</h1>
+
+<form th:action="@{/items/new}" method="post" th:object="${item}">
+    <label for="name">Name:</label>
+    <input type="text" id="name" th:field="*{name}" required />
+
+    <label for="description">Description:</label>
+    <textarea id="description" th:field="*{description}" required></textarea>
+
+    <label for="price">Price:</label>
+    <input type="number" id="price" th:field="*{price}" step="0.01" required />
+
+    <input type="submit" value="Create Item" />
+</form>
+
+<a th:href="@{/items}">Back to Items List</a>
+
+</body>
+</html>
