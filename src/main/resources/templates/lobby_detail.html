@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lobby Detail</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Lobby Detail</h1>
+
+    <p>ID:
+        <strong th:text="${lobby.id}"></strong>
+    </p>
+
+    <p>Name:
+        <strong th:text="${lobby.lot.name}"></strong> <!-- Assuming lot has a name -->
+    </p>
+
+    <p>Description:
+        <strong th:text="${lobby.lobbyStatus}"></strong> <!-- Assuming lobbyStatus is a description -->
+    </p>
+
+    <p>Owner:
+        <strong th:text="${lobby.owner.name}"></strong> <!-- Assuming owner has a name -->
+    </p>
+
+    <form th:action="@{/lobbies/update/{id}(id=${lobby.id})}" method="post">
+        <!-- Add fields for updating the lobby if necessary -->
+        <input type="submit" value="Update Lobby"/>
+    </form>
+
+    <form th:action="@{/lobbies/delete/{id}(id=${lobby.id})}" method="post" style="display:inline;">
+        <input type="hidden" name="_method" value="delete"/>
+        <input type="submit" value="Delete Lobby"/>
+    </form>
+
+    <a th:href="@{/lobbies}">Back to Lobby List</a>
+</div>
+
+</body>
+</html>

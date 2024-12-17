@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create New Lobby</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            margin-top: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+    </style>
+</head>
+<body>
+
+<h1>Create New Lobby</h1>
+
+<form th:action="@{/lobbies/new}" method="post" th:Object="${lobby}">
+
+    <label for="name">Name:</label>
+    <input type="text" id="name" th:name="name" required/>
+
+    <label for="description">Description:</label>
+    <textarea id="description" th:name="description" required></textarea>
+
+    <label for="maxUsers">Max Users:</label>
+    <input type="number" id="maxUsers" th:name="maxUsers" required/>
+
+    <input type="submit" value="Create Lobby"/>
+</form>
+
+<a th:href="@{/lobbies}">Back to Lobby List</a>
+
+</body>
+</html>
